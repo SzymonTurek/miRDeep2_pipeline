@@ -1,0 +1,2 @@
+/data/input_fastq/HI.0681.003.smRNA5.10_R1_trimmed.fastq	sd1
+/data/input_fastq/HI.0681.003.smRNA6.11_R1_trimmed.fastq	sd2
