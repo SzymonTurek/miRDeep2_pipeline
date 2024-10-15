@@ -166,7 +166,7 @@ process MAPPER{
     
     #bwt_idx=\$( basename bowtie_index.1.ebwt .1.ebwt)
     #mapper.pl ${config_file} -d -e -h -j   -l 18 -m -p \${bwt_idx} -s reads_collapsed.fa -t reads_collapsed_vs_genome.arf -v -q -o 12
-    mapper.pl ${config_file} -d -e -h -j   -l 18 -m -p bowtie_index -s reads_collapsed.fa -t reads_collapsed_vs_genome.arf -v -q -o 12
+    mapper.pl ${config_file} -d -e -h -j   -l 18 -m -p bowtie_index -s reads_collapsed.fa -t reads_collapsed_vs_genome.arf -v -q -o 2
     """
 }
 
@@ -211,10 +211,10 @@ workflow {
 
 
 
-    fastqc_ch = FASTQC(samples_ch)
-    MULTIQC(fastqc_ch.collect())
+   // fastqc_ch = FASTQC(samples_ch)
+   // MULTIQC(fastqc_ch.collect())
    
-    MIRTRACE(collected_samples_ch)
+   // MIRTRACE(collected_samples_ch)
   
    //fastq_ch =  DECOMPRESS_GZIP_FILES(samples_ch)
 
