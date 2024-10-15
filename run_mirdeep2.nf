@@ -9,7 +9,7 @@ params.outdir = "results"
 params.fastqc_outdir = "results/fastqc_output"
 params.mapper_config = "$baseDir/config.txt"
 params.hairpin = "$baseDir/Hairpin.fa"
-
+params.mirna_second = "$baseDir/Mature_ath.fa"
 
 
 
@@ -181,6 +181,7 @@ process MIRDEEP2{
      path(arf)
      path(genome)
      path(mature)
+     path(mature_second)
      path(hairpin)
 
     output:
@@ -189,7 +190,7 @@ process MIRDEEP2{
     script:
     """
 
-    miRDeep2.pl ${reads_collapsed} ${genome} ${arf} ${mature} none ${hairpin} -g -1 -c 2> report.log
+    miRDeep2.pl ${reads_collapsed} ${genome} ${arf} ${mature} ${mature_second} ${hairpin} -g -1 -c 2> report.log
     """
 }
 
@@ -219,7 +220,7 @@ workflow {
 
     bowtie_index_ch = BUILD_BOWTIE_INDEX(params.reference_genome)
     mapper_ch = MAPPER(params.mapper_config,bowtie_index_ch )
-    mirdeep2_ch =  MIRDEEP2(MAPPER.out.reads_collapsed, MAPPER.out.arf, params.reference_genome, params.mature_miRNA_list, params.hairpin )
+    mirdeep2_ch =  MIRDEEP2(MAPPER.out.reads_collapsed, MAPPER.out.arf, params.reference_genome, params.mature_miRNA_list, params.mirna_second, params.hairpin )
 }
 
 
